@@ -1,0 +1,237 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Alatsi&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Montserrat', 'Alatsi', sans-serif;
+    background: linear-gradient(to right, #191919 60%, purple);
+    background-attachment: fixed;
+    color: #F5F6FA!important;
+}
+
+section {
+    /* margin-bottom: 60px; also this causes a problem in the desktop*/
+    /* padding: 40px 0; this messes up layout */ 
+    /* border-radius: 18px; after the new design improvment this border radius now messes up the layout */ 
+    box-shadow: 0 2px 16px rgba(106,29,112,0.08);
+}
+
+.about-heading{
+  
+    font-family: 'Montserrat', cursive;
+    width: 100%;
+    filter: grayscale(80%);
+    background-image: linear-gradient(
+        -225deg,
+        #231557 0%,
+        #44107a 29%,
+        #e333bd 67%,
+        #fff800 100%
+      );
+      background-size: auto auto;
+      background-clip: border-box;
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textclip 4s linear infinite;
+      display: inline-block;
+          font-size: 40px;
+}
+
+
+@keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+.about-text{
+    margin-top: 50px;
+    font-family: 'Roboto', cursive;
+    font-style: italic;
+    padding: 20px;
+    font-size: 18px;
+    color: #9EA3B2;
+    background-color: black;
+    border-radius: 20px;
+    box-shadow: 5px 0px 10px 0px black;
+}
+
+#aboutTitle{
+    font-weight: bold;
+    font-style: normal;
+    color: white;
+    font-size: 1em;
+}
+
+
+.footerTxt{
+    color: #4F4D3E;
+}
+
+@media screen and (max-width: 450px) {
+    
+    .imageStyles{
+        height: inherit;
+        width: inhe;
+    }
+}
+
+/* Section backgrounds for visual separation */
+.section-bg-dark {
+    background: linear-gradient(90deg, #191919 80%, #6A1D70 100%);
+}
+.section-bg-light {
+    background: linear-gradient(90deg, #232946 80%, #6A1D70 100%);
+}
+.section-card {
+    background: #232946;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(106,29,112,0.12);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+/* Navbar improvements */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(to right, #191919 60%, purple);
+    background-attachment: fixed;
+    box-shadow: none;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+    background: #000 !important;
+    background-image: none !important;
+    box-shadow: 0 2px 8px rgba(106,29,112,0.15);
+}
+.breadcrumb-link {
+    color: #F5F6FA;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin: 0 18px;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 2px solid transparent;
+}
+.breadcrumb-link:hover {
+    color: #fff800;
+    border-bottom: 2px solid #fff800;
+}
+.navbar-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: linear-gradient(to right, #191919 60%, purple);
+    transition: background 0.3s;
+}
+nav.scrolled .navbar-bg {
+    background: #000 !important;
+    background-image: none !important;
+}
+
+/* Button improvements */
+button, .chakra-button {
+    background: linear-gradient(90deg, #6A1D70 0%, #e333bd 100%);
+    color: #F5F6FA;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(106,29,112,0.10);
+    transition: background 0.2s, color 0.2s;
+}
+button:hover, .chakra-button:hover {
+    background: linear-gradient(90deg, #e333bd 0%, #6A1D70 100%);
+    color: #fff800;
+}
+
+/* Timeline for Work Experience */
+.timeline-card {
+    background: #232946;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(106,29,112,0.12);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 2;
+}
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid #fff800;
+    background: #6A1D70;
+    box-shadow: 0 0 0 4px #232946;
+}
+
+/* Certifications grid styles */
+.cert-card {
+    background: #232946;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(106,29,112,0.12);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    min-width: 220px;
+    max-width: 320px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cert-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(227,51,189,0.18);
+}
+.cert-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #fff800;
+    color: #6A1D70;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 4px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(106,29,112,0.10);
+    z-index: 2;
+}
+
+/* Volunteering wide card styles */
+.vol-card {
+    background: #232946;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(106,29,112,0.12);
+    padding: 48px 32px 32px 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.vol-card:hover {
+    box-shadow: 0 8px 32px rgba(106,29,112,0.18);
+    transform: translateY(-6px) scale(1.02);
+}
+.vol-watermark {
+    position: absolute !important;
+    top: -20px !important;
+    right: -20px !important;
+    opacity: 0.08 !important;
+    z-index: 1 !important;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .timeline-card {
+        min-width: 220px !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

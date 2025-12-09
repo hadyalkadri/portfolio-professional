@@ -1,0 +1,12 @@
+.imageStyles {
+    box-shadow: 2px 1px 0px 1px black;
+    border-radius: 12px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    border: 2px solid #6A1D70;
+}
+
+.imageStyles:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px 0 rgba(106,29,112,0.3);
+    border-color: #9EA3B2;
+}

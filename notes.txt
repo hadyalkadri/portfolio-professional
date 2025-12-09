@@ -1,0 +1,17 @@
+1 - I have to fix the preview folder responsivity issues or else resort to just sharing the file link.
+2 - The landing page intro needs to be more responsive
+3 - Colors of title in contact section is weird pinkish
+4 - Perhaps I have to tighten some details overall in the website. However, it is good to go.
+
+there has been modifications on the 7th of Feb 2024. Where I did not delete old code, but commented it out.
+
+When you come back finish through the bullet point. And then this becomes no longer a priority. 
+
+Then you shift your focus to other things to learn and to do with your time.
+
+
+////// Most important is to add in enviroment variables this: /////////
+
+GERNERATE_SOURCEMAP = FALSE
+
+so that you are source code is not accessible by the public

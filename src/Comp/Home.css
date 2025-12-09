@@ -1,0 +1,48 @@
+.typed-text {
+    color: #808080;
+    font-size: 16px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    font-family: 'Alatsi', sans-serif;
+}
+
+.header-container-desktop {
+    background: linear-gradient(to right, #191919 60%,  #6A1D70 100%);
+    min-height: 100vh;
+
+}
+
+.header-container-mobile{
+    background-color: #191919;
+    min-height: 100vh;
+}
+
+#headerSymbol{
+    color: purple;
+}
+
+#header-image{
+    position: relative;
+    z-index: 2;
+    
+}
+
+.header-box{
+    position: relative;
+    overflow: hidden;
+    
+}
+
+#bg-circle {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    bottom: 60px;
+    right: -25px;
+    z-index: 1;
+    filter: blur(60px);
+    opacity: 0.7;
+}
+

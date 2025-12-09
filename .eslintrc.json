@@ -1,0 +1,22 @@
+{   
+    "parser": "espree",
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    //"jsx": true this allows for no erslint errors on jsx files
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "jsx": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}
