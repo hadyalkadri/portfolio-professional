@@ -1,109 +1,114 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef } from 'react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink,Flex, Box,  Button } from '@chakra-ui/react';
-// import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import {FaBars, FaCross} from 'react-icons/fa'
+import React, { useEffect, useRef, useState } from 'react';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Box, Button } from '@chakra-ui/react';
+import { FaBars, FaCross } from 'react-icons/fa';
 import './NavBar.css';
 import Logo from './assets/logo.png';
 
-
-
-const NavBar = ({isDesktop, show, setShow}, ref) => {
+const NavBar = ({ isDesktop, show, setShow }, ref) => {
   const navRef = useRef();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      let opacity = 0;
-      if (scrollY > 0) {
-        opacity = Math.min(scrollY / 300, 1);
-      }
-      const isScrolled = scrollY > 40;
-      navRef.current.classList.toggle('scrolled', isScrolled);
-      // Toggle .scrolled on navbar-bg
-      const navbarBg = navRef.current.querySelector('.navbar-bg');
-      if (navbarBg) {
-        navbarBg.classList.toggle('scrolled', isScrolled);
-        if (isScrolled) {
-          navbarBg.style.background = `rgba(0,0,0,${opacity})`;
-          navbarBg.style.backgroundImage = 'none';
-        } else {
-          navbarBg.style.background = 'linear-gradient(90deg, #232946 60%, #6A1D70 100%)';
-          navbarBg.style.backgroundImage = '';
-        }
-      }
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const {contactRef, aboutRef, portfolioRef, experienceRef, educationRef, certificationsRef, volunteeringRef} = ref
-
+  const { contactRef, aboutRef, portfolioRef, experienceRef, educationRef, certificationsRef, volunteeringRef } = ref;
 
   const boxStyles = {
-    textDecoration: "none",
-    color: "#F5F6FA",
-    fontSize: "1.1em",
+    textDecoration: 'none',
+    color: '#F5F6FA',
+    fontSize: '1.1em',
     fontWeight: 500,
-    margin: "0 18px",
-    transition: "color 0.3s, border-bottom 0.2s",
-    borderBottom: "2px solid transparent",
-  }
+    margin: '0 18px',
+    transition: 'color 0.3s, border-bottom 0.2s',
+    borderBottom: '2px solid transparent',
+    background: 'transparent !important',
+    backgroundColor: 'transparent !important',
+    backgroundImage: 'none !important',
+  };
 
   const barBtn = {
     backgroundColor: 'transparent',
     color: 'white',
-    fontSize: '24px'
-  }
-
+    fontSize: '24px',
+  };
 
   const handleButton = () => {
-
-    if (show === false){
-      setShow(true)
-    }
-    else{
-      setShow(false)
-    }
-  }
+    setShow(!show);
+  };
 
   const handleNavLinkHover = (event) => {
-    event.target.style.color = "#444B53";
-    event.target.style.transition = "color 0.3s";
+    event.target.style.color = '#444B53';
+    event.target.style.transition = 'color 0.3s';
   };
   const handleNavLinkMouseOut = (event) => {
-    event.target.style.color = "#F5F6FA";
-    event.target.style.transition = "color 0.3s";
+    event.target.style.color = '#F5F6FA';
+    event.target.style.transition = 'color 0.3s';
   };
-
 
   return (
     <Flex
       as="nav"
       ref={navRef}
+      className={isScrolled ? 'scrolled' : ''}
       align="center"
-      justify={isDesktop ? "space-between" : "space-between"}
+      justify={isDesktop ? 'space-between' : 'space-between'}
       w="100%"
       p="0"
-      style={{ position: "relative" }}
+      style={{ position: 'relative' }}
+      sx={{
+        // Aggressively force all children to be transparent
+        '& *': {
+          background: 'transparent !important',
+          backgroundColor: 'transparent !important',
+          backgroundImage: 'none !important',
+        },
+      }}
     >
-      <div className="navbar-bg" style={{ width: "100%", position: "absolute", top: 0, left: 0, height: "100%", zIndex: 0 }}></div>
-      <Box as="div" className="nav-container" flex={isDesktop ? "none" : 1} display="flex" alignItems="center" justifyContent={isDesktop ? "flex-start" : "flex-start"} style={{ background: "transparent", position: "relative", zIndex: 1, padding: "20px" }}>
+      {/* .navbar-bg overlay removed */}
+      <Box
+        as="div"
+        className="nav-container"
+        flex={isDesktop ? 'none' : 1}
+        display="flex"
+        alignItems="center"
+        justifyContent={isDesktop ? 'flex-start' : 'flex-start'}
+        style={{ background: 'transparent', position: 'relative', zIndex: 1, padding: '20px' }}
+      >
         <Breadcrumb separator={" "}>
           <BreadcrumbItem isCurrentPage>
-            <img src={Logo} width={"43px"} height={"43px"} style={{ verticalAlign: 'middle' }} />
+            <img
+              src={Logo}
+              width={"43px"}
+              height={"43px"}
+              style={{ verticalAlign: 'middle', background: 'transparent', backgroundColor: 'transparent', backgroundImage: 'none' }}
+              alt="Logo"
+            />
             <BreadcrumbLink
               href="#"
               fontWeight={"bold"}
               ml={"5px"}
               fontSize={"20px"}
+              sx={{ background: 'transparent !important', backgroundColor: 'transparent !important', backgroundImage: 'none !important' }}
             >
               Hady Alkadri
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Box>
-      <Box flex={isDesktop ? "none" : 1} className="nav-container" display="flex" alignItems="center" justifyContent={isDesktop ? "flex-end" : "flex-end"} style={{ background: "transparent", position: "relative", zIndex: 1, padding: "20px" }}>
+      <Box
+        flex={isDesktop ? 'none' : 1}
+        className="nav-container"
+        display="flex"
+        alignItems="center"
+        justifyContent={isDesktop ? 'flex-end' : 'flex-end'}
+        style={{ background: 'transparent', position: 'relative', zIndex: 1, padding: '20px' }}
+      >
         {isDesktop ? (
           <Breadcrumb separator={" "}>
             <BreadcrumbItem>
@@ -111,8 +116,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   portfolioRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -127,8 +132,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   aboutRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -142,8 +147,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   experienceRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -157,8 +162,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   educationRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -172,8 +177,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   certificationsRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -187,8 +192,8 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 sx={boxStyles}
                 onClick={() => {
                   volunteeringRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
+                    behavior: 'smooth',
+                    block: 'center',
                   });
                 }}
                 onMouseEnter={handleNavLinkHover}
@@ -197,11 +202,11 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
                 Volunteering
               </BreadcrumbLink>
             </BreadcrumbItem>
-                   <BreadcrumbItem>
+            <BreadcrumbItem>
               <BreadcrumbLink
                 sx={boxStyles}
                 onClick={() => {
-                  contactRef.current.scrollIntoView({ behavior: "smooth" });
+                  contactRef.current.scrollIntoView({ behavior: 'smooth' });
                 }}
                 onMouseEnter={handleNavLinkHover}
                 onMouseLeave={handleNavLinkMouseOut}
@@ -212,12 +217,12 @@ const NavBar = ({isDesktop, show, setShow}, ref) => {
           </Breadcrumb>
         ) : (
           <Button style={barBtn} onClick={handleButton} ml={isDesktop ? 0 : 'auto'}>
-            {show ? <FaCross /> : <FaBars></FaBars>}
+            {show ? <FaCross /> : <FaBars />}
           </Button>
         )}
       </Box>
     </Flex>
   );
-}
+};
 
-export default React.forwardRef(NavBar)
+export default React.forwardRef(NavBar);

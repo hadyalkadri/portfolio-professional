@@ -43,27 +43,47 @@ function Contact(props, ref) {
       subject: subject,
       message: message
     }
-    
-    
-
 
     if (name === "" || email === "" || subject === "" || message === ""){
-
       toast({
         title: 'Error: message is empty!',
         description: 'You have missing a field.',
         duration: 3000,
         isClosable: true,
         colorScheme: 'red',
-        position: 'top'
-      })
+        position: 'top',
+        status: 'error',
+        variant: 'solid',
+      });
     }
     else{
       emailjs.send('service_ll45ihc', 'template_bvfa6pl', tempParams, 'e6PbAj2qrbE9oWA43')
-      .then((result) => {
-        alert(result.text);
-      }, (err) => {
-        alert(err.text);
+      .then(() => {
+        toast({
+          title: 'Message sent!',
+          description: 'Your message was sent successfully.',
+          duration: 3500,
+          isClosable: true,
+          colorScheme: 'green',
+          position: 'top',
+          status: 'success',
+          variant: 'solid', // Changed from 'subtle' to 'solid' for better readability
+        });
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      }, () => {
+        toast({
+          title: 'Failed to send message',
+          description: 'There was a problem sending your message. Please try again later.',
+          duration: 3500,
+          isClosable: true,
+          colorScheme: 'red',
+          position: 'top',
+          status: 'error',
+          variant: 'solid',
+        });
       });
     }
 

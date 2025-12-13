@@ -69,7 +69,7 @@ function Experience(props, ref) {
                 <Heading as="h2" size="xl" textAlign="center" mb={12} className="about-heading">
                     Work Experience
                 </Heading>
-                <Box position="relative" _before={{content:'""', position:'absolute', left:'50%', top:0, bottom:0, width:'4px', bg:'#6A1D70', transform:'translateX(-50%)', zIndex:1}}>
+                <Box position="relative" _before={{content:'""', position:'absolute', left:'50%', top:0, bottom:'-25px', width:'4px', bg:'#6A1D70', transform:'translateX(-50%)', zIndex:1}}>
                     {experienceData.map((item, index) => (
                         <TimelineItem
                             key={index}
@@ -82,8 +82,45 @@ function Experience(props, ref) {
                             isLatest={index === experienceData.length - 1}
                         />
                     ))}
+                    {/* Pulsing circle at the end of the timeline */}
+                    <Box
+                        position="absolute"
+                        left="50%"
+                        bottom="-32px"
+                        transform="translateX(-50%)"
+                        zIndex={2}
+                        w="32px"
+                        h="32px"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Box
+                            as="span"
+                            w="18px"
+                            h="18px"
+                            borderRadius="full"
+                            bg="#6A1D70"
+                            boxShadow="0 0 0 0 #fff800"
+                            animation="pulse 2.2s cubic-bezier(0.4,0,0.2,1) infinite"
+                        />
+                    </Box>
                 </Box>
             </Box>
+            {/* Pulse animation keyframes */}
+            <style>{`
+                @keyframes pulse {
+                  0% {
+                    box-shadow: 0 0 0 0 rgba(106,29,112, 0.5);
+                  }
+                  70% {
+                    box-shadow: 0 0 0 16px rgba(106,29,112, 0);
+                  }
+                  100% {
+                    box-shadow: 0 0 0 0 rgba(106,29,112, 0);
+                  }
+                }
+            `}</style>
         </Box>
     );
 }

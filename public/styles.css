@@ -52,9 +52,10 @@ section {
   }
 
 .about-text{
-    margin-top: 50px;
-    font-family: 'Roboto', cursive;
+    margin-top:70px;
+    font-family: 'Comic Neue', 'Quicksand', cursive !important;
     font-style: italic;
+    font-weight: 600;
     padding: 20px;
     font-size: 18px;
     color: #9EA3B2;
@@ -152,6 +153,74 @@ button, .chakra-button {
 button:hover, .chakra-button:hover {
     background: linear-gradient(90deg, #e333bd 0%, #6A1D70 100%);
     color: #fff800;
+}
+
+/* Hero Contact Me button */
+.hero-contact-btn {
+  background: linear-gradient(90deg, #6A1D70 0%, #e333bd 100%);
+  color: #fff;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1.25em;
+  padding: 1.1em 2.7em;
+  box-shadow: 0 6px 32px 0 rgba(106,29,112,0.22), 0 2px 12px 0 #191919;
+  border: 2.5px solid #7f2687;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s cubic-bezier(.4,0,.2,1), border 0.2s;
+}
+.hero-contact-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #fff800 0%, #e333bd 50%, #6A1D70 100%);
+  opacity: 0.18;
+  z-index: 0;
+  filter: blur(8px);
+  pointer-events: none;
+  animation: hero-btn-glow 2.2s linear infinite alternate;
+}
+.hero-contact-btn:hover, .hero-contact-btn:focus {
+  background: linear-gradient(90deg, #e333bd 0%, #6A1D70 100%);
+  color: #fff800;
+  box-shadow: 0 12px 40px 0 rgba(106,29,112,0.32), 0 4px 16px 0 #191919;
+  border: 2.5px solid #fff800;
+  transform: scale(1.04);
+}
+.hero-contact-btn:active {
+  animation: hero-btn-pulse 0.35s;
+  background: linear-gradient(90deg, #7f2687 0%, #e333bd 100%);
+  color: #fff;
+}
+@keyframes hero-btn-pulse {
+  0% { box-shadow: 0 0 0 0 #e333bd44; }
+  70% { box-shadow: 0 0 0 16px #e333bd22; }
+  100% { box-shadow: 0 0 0 0 #e333bd00; }
+}
+@keyframes hero-btn-glow {
+  0% { opacity: 0.18; filter: blur(8px); }
+  100% { opacity: 0.32; filter: blur(16px); }
+}
+.hero-contact-btn:focus-visible {
+  outline: 2.5px solid #fff800;
+  outline-offset: 2px;
+}
+.hero-contact-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: #fff80055;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 /* Timeline for Work Experience */

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Heading, Text, Icon } from '@chakra-ui/react';
 import { volunteeringData } from '../../data';
-import { FaHandsHelping } from 'react-icons/fa';
+import { FaHandsHelping, FaHandHoldingHeart, FaLeaf } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const VolunteeringCard = ({ icon, period, role, organization, description }) => {
@@ -25,6 +25,8 @@ VolunteeringCard.propTypes = {
 };
 
 function Volunteering(props, ref) {
+    // Choose icons for each volunteering experience
+    const icons = [FaHandsHelping, FaHandHoldingHeart, FaLeaf];
     return (
         <Box ref={ref} w="100%" py="100px" px="30px" bg="#232946">
             <Box maxW="900px" mx="auto">
@@ -34,7 +36,7 @@ function Volunteering(props, ref) {
                 {volunteeringData.map((item, index) => (
                     <VolunteeringCard
                         key={index}
-                        icon={FaHandsHelping}
+                        icon={icons[index] || FaHandsHelping}
                         period={item.period}
                         role={item.role}
                         organization={item.organization}

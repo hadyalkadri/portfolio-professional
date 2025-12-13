@@ -29,8 +29,8 @@ function About({isLessThan400, isMobile}, ref) {
 
     const socialMediaLinks = {
         padding: '20px',
-        marginTop: '90px',
-        
+        marginTop: isMobile ? '70px' : '90px',
+
     }
 
     // const pdfStyles = {
@@ -73,7 +73,7 @@ function About({isLessThan400, isMobile}, ref) {
                             alignItems="center"
                             position="relative"
                         >
-                            <iframe src="https://drive.google.com/file/d/12MxhauurRyp83GJQaZzaWF4L3Yqy87Ij/preview" width="560" height="480" allow="autoplay" style={{ borderRadius: '12px', boxShadow: '0 2px 12px #d4af37', border: 'none' }} />
+                            <iframe src="https://drive.google.com/file/d/1ShwkYTkgGCvq_HO1aJIgihprKr4mukY0/preview" width="560" height="480" allow="autoplay" style={{ borderRadius: '12px', boxShadow: '0 2px 12px #d4af37', border: 'none' }} />
                         </Box>
                         <Box position="absolute" top={-24} right={-24}>
                             <IconButton
@@ -110,8 +110,10 @@ function About({isLessThan400, isMobile}, ref) {
                 create powerful and unique web applications
             </Text> */}
             <VStack>
-                <Text className='about-text' fontSize={['2em','2.45em']}>
-                &quot; I found my pleasure in desgining and coding tasteful and powerful applications for my clients. &quot; 
+                <Text className='about-text' fontSize={['2em','2.45em']} textAlign="center">
+                &quot; A detail-oriented web developer, I find my happiest flow state coding and designing dynamic, tasteful solutions. 
+                Fueled by my love for music, literature, and focus of resistance training, 
+                I am committed to leveraging tech for social good. &quot; 
                 </Text>
              
                 <HStack w={'100%'} spacing={'20px'} mt={'30px'} pl={'25px'}>

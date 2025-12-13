@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { lazy, Suspense, useState} from 'react';
-import { Box, SimpleGrid, Heading,Image, Flex, Button, Stack, StackDivider,Breadcrumb, BreadcrumbItem, BreadcrumbLink, useMediaQuery } from '@chakra-ui/react';
+import { Box, SimpleGrid, Heading,Image, Flex, Button, Stack,  useMediaQuery } from '@chakra-ui/react';
 import Photo from './assets/portait.jpg'
 // import Circle from './assets/bg-circle.png';
 // import Typed from "react-typed";
@@ -11,6 +11,7 @@ import './Home.css';
 // import Contact from './homeComp/Contact';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './homeComp/ErrorBoundary';
+import { FaTimes } from 'react-icons/fa';
 
 const Typed = lazy(() => import('react-typed'));
 
@@ -23,12 +24,12 @@ const Certifications = lazy(() => import('./homeComp/Certifications'));
 const Volunteering = lazy(() => import('./homeComp/Volunteering'));
 
 
-const Home = ({isMobile, isDesktop, show}, ref) => {
+// Accept onClose as a prop
+const Home = ({isMobile, isDesktop, show, onClose}, ref) => {
 
   const {contactRef, aboutRef, portfolioRef, experienceRef, educationRef, certificationsRef, volunteeringRef} = ref;
 
   const [onHover, setOnHover] = useState(false);
- 
 
   const [isLessThan400] = useMediaQuery("(max-width: 450px)")
 
@@ -44,64 +45,43 @@ const Home = ({isMobile, isDesktop, show}, ref) => {
     border: onHover ? '3px solid purple' : '1px solid white'
   }
 
-  const navBoxStyles = {
+  // const navBoxStyles = {
     
-  }
+  // }
 
-  const mobileBarLinkStyles = {
-    textDecoration: 'none'
-  }
+  // const mobileBarLinkStyles = {
+  //   textDecoration: 'none'
+  // }
 
   return (
     <div>
       {show && isLessThan400 ? (
-        <Flex  justify={"center"} backgroundColor={"#191919"} color={"white"} boxShadow={'0px 2px 10px 10px black'}>
-          <Stack width={'100%'} divider={<StackDivider borderColor={'black'}/>} alignItems={'center'}> 
-            <Box style={navBoxStyles}>
-              <Breadcrumb>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    sx={mobileBarLinkStyles}
-                    onClick={() => {
-                      portfolioRef.current.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                    }}
-                  >
-                    Portfolio
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
+        <Flex justify="center" align="center" position="fixed" top="0" left="0" width="100vw" height="100vh" zIndex={1000} backgroundColor="rgba(25,25,25,0.95)">
+          <Box
+            backgroundColor="#232136"
+            borderRadius="2xl"
+            boxShadow="0 8px 32px 0 rgba(31, 38, 135, 0.37)"
+            padding="2em 1.5em"
+            minWidth="80vw"
+            maxWidth="95vw"
+            style={{
+              animation: 'slideDown 0.4s cubic-bezier(0.4,0,0.2,1)',
+              position: 'relative',
+            }}
+          >
+            <Box position="absolute" top="1em" right="1em" cursor="pointer" onClick={onClose}>
+              <FaTimes size={28} color="#fff" />
             </Box>
-            <Box style={navBoxStyles}>
-              <Breadcrumb>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    sx={mobileBarLinkStyles}
-                    onClick={() => {
-                      aboutRef.current.scrollIntoView({ behavior: "smooth" });
-                    }}
-                  >
-                    About
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
-            </Box>
-            <Box style={navBoxStyles}>
-              <Breadcrumb>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    sx={mobileBarLinkStyles}
-                    onClick={() => {
-                      contactRef.current.scrollIntoView({ behavior: "smooth" });
-                    }}
-                  >
-                    Contact
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
-            </Box>
-          </Stack>
+            <Stack spacing={5} align="center" mt={8}>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); portfolioRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Portfolio</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); aboutRef.current.scrollIntoView({ behavior: 'smooth' }); }}>About</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); experienceRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Experience</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); educationRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Education</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); certificationsRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Certifications</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); volunteeringRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Volunteering</Button>
+              <Button variant="ghost" className="mobile-nav-btn" onClick={() => { onClose && onClose(); contactRef.current.scrollIntoView({ behavior: 'smooth' }); }}>Contact</Button>
+            </Stack>
+          </Box>
         </Flex>
       ) : null}
 
@@ -141,6 +121,7 @@ const Home = ({isMobile, isDesktop, show}, ref) => {
                 <Flex justify={"center"}>
                   <Box as="div">
                     <Button
+                      className="hero-contact-btn"
                       style={btnStyles}
                       onMouseLeave={() => {
                         setOnHover(false);
@@ -148,10 +129,19 @@ const Home = ({isMobile, isDesktop, show}, ref) => {
                       onMouseEnter={() => {
                         setOnHover(true);
                       }}
-                      onClick={() => {
-                        contactRef.current.scrollIntoView({
-                          behavior: "smooth",
-                        });
+                      onClick={e => {
+                        // Ripple effect
+                        const btn = e.currentTarget;
+                        const circle = document.createElement('span');
+                        const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+                        const radius = diameter / 2;
+                        circle.style.width = circle.style.height = `${diameter}px`;
+                        circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+                        circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
+                        circle.className = 'ripple';
+                        btn.appendChild(circle);
+                        setTimeout(() => circle.remove(), 600);
+                        contactRef.current.scrollIntoView({ behavior: "smooth" });
                       }}
                     >
                       Contact Me

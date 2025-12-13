@@ -38,9 +38,34 @@ CertificationItem.propTypes = {
 function Certifications(props, ref) {
     return (
         <Box ref={ref} w="100%" py="100px" px="30px" position="relative">
-            {/* Center watermark logo graphic */}
-            <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" zIndex={0} opacity={0.13} pointerEvents="none">
-                <img src={logoWatermark} alt="logo watermark" style={{ width: '220px', height: '220px', objectFit: 'contain', filter: 'grayscale(1) brightness(0.5)', backgroundColor: '#4F4D3E', borderRadius: '50%' }} />
+            {/* Center watermark logo graphic, responsive and visually behind grid */}
+            <Box
+                position="absolute"
+                top={{ base: '58%', md: '60%' }}
+                left="50%"
+                transform="translate(-50%, -50%)"
+                zIndex={0}
+                opacity={0.09}
+                pointerEvents="none"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                w={{ base: '160px', sm: '200px', md: '300px' }}
+                h={{ base: '160px', sm: '200px', md: '300px' }}
+            >
+                <img
+                    src={logoWatermark}
+                    alt="logo watermark"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        filter: 'grayscale(1) brightness(0.5)',
+                        borderRadius: '50%',
+                        background: 'none',
+                        display: 'block',
+                    }}
+                />
             </Box>
             <Box maxW="1000px" mx="auto" zIndex={1} position="relative">
                 <Heading as="h2" size="xl" textAlign="center" mb={12} className="about-heading">

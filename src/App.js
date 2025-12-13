@@ -46,8 +46,7 @@ function App() {
             isMobile={isMobile}
             isDesktop={isDesktop}
             show={show}
-            setShow={setShow}
-
+            onClose={() => setShow(false)}
             ref={homeRef}
           />
         </section>
