@@ -74,6 +74,12 @@ export const certificationData = [
         date: "Oct 2024",
         icon: "Simplilearn"
     },
+    {
+        name: "MEAL DPro - Monitoring, Evaluation, Accountability and Learning",
+        issuer: "Catholic Relief Services",
+        date: "Oct 2024",
+        icon: "Simplilearn"
+    }
 
 ];
 
