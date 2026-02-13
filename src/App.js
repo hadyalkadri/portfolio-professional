@@ -4,6 +4,7 @@ import NavBar from './Comp/NavBar';
 import Home from './Comp/Home';
 import Footer from './Comp/Footer';
 import '../src/Comp/Home.css';
+import { Analytics } from "@vercel/analytics/react"
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <footer>
           <Footer />
         </footer>
+        <Analytics />
       </div>
     </ChakraProvider>
   );
