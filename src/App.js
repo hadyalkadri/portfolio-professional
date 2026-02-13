@@ -1,10 +1,10 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { ChakraProvider, useMediaQuery } from '@chakra-ui/react';
 import NavBar from './Comp/NavBar';
 import Home from './Comp/Home';
 import Footer from './Comp/Footer';
 import '../src/Comp/Home.css';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics, track } from "@vercel/analytics/react"
 
 
 function App() {
@@ -29,6 +29,15 @@ function App() {
       '(min-width: 800px)'
     ]
    )
+
+   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source');
+    if (source) {
+      track(`Visitor From ${source}`);
+    }
+  }, []);
+
   return (
     <ChakraProvider>
       <div>
